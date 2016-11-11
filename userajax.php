@@ -36,6 +36,14 @@
 		sharedRides();
 		break;
 
+		case 9:
+		addBlog();
+		break;
+
+		case 10:
+		viewBlogs();
+		break;
+
 		default:
 		echo "wrong cmd";
 		break;
@@ -278,5 +286,60 @@ function joinedRides() {
 	
 }
 
+function addBlog() {
+	if (($_REQUEST['firstname']=="") || ($_REQUEST['lastname']=="") || ($_REQUEST['title']=="")
+		|| ($_REQUEST['eventdate']=="") || ($_REQUEST['eventtime']=="") || ($_REQUEST['place']=="") || ($_REQUEST['blogtext']=="")) {
+		echo '{"result":0, "message": "All blog information required was not given"}';
+		return;
+	}
+	
+	include_once("blogs.php");
+	$obj = new blogs();
+	$firstname = $_REQUEST['firstname'];
+	$lastname = $_REQUEST['lastname'];
+	$title = $_REQUEST['title'];
+	$eventdate = $_REQUEST['eventdate'];
+	$eventtime = $_REQUEST['eventtime'];
+	$place = $_REQUEST['place'];
+	$blogtext = $_REQUEST['blogtext'];
+	
+	$a = $obj->newBlog($firstname,$lastname,$title,$eventdate,$eventtime,$place,$blogtext);
+
+	if (!$a) {
+		echo '{"result":0 ,"message": "Could not create new blog"}';
+	}
+	
+	else {
+	 echo '{"result": 1, "message": "Blog successfully created"}';	
+	}
+	
+}
+
+function viewBlogs() {
+	
+	include_once("blogs.php");
+	$obj = new blogs();
+	
+	$a = $obj->getBlogs();
+
+	if (!$a) {
+		echo '{"result":0 ,"message": "Could not view blogs"}';
+	}
+	
+	else {
+		$row=$obj->fetch();
+		echo '{"result":1,"pool":[';
+		while($row){
+			echo json_encode($row);
+
+			$row=$obj->fetch();
+			if($row!=false){
+				echo ",";
+			}
+		}
+		echo "]}";	
+	}
+	
+}
 
 ?>
