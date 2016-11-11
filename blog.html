@@ -6,7 +6,7 @@
 
         <!-- Basic Page Needs -->
         <meta charset="utf-8">
-        <title>Share My ride - Rides</title>
+        <title>Share My ride - Newsfeed</title>
         <meta name="description" content="">
         <meta name="author" content="">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,6 +35,16 @@
         <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 
         <script>
+            var userAgent = navigator.userAgent + '';
+            if (userAgent.indexOf('iPhone') > -1) {
+                document.write('<script src="js/lib/cordova-iphone.js"></sc' + 'ript>');
+                var mobile_system = 'iphone';
+            } else if (userAgent.indexOf('Android') > -1) {
+                document.write('<script src="js/lib/cordova-android.js"></sc' + 'ript>');
+                var mobile_system = 'android';
+            } else {
+                var mobile_system = '';
+            }
 
                 function addNewsComplete(xhr, status){
                 //alert("status is" + status);
@@ -88,8 +98,7 @@
                 //alert("hey");
                 if(obj.result==0){
                     alert("server response: "+obj.message);
-                    
-                    spanSignup.innerHTML=obj.message;
+                
                     console.log(obj.message);
                 }else{   
               var result="";
@@ -100,7 +109,7 @@
                 //alert("there");
                   
                     //alert(length);                   
-                    result+="<article class='article clearfix'><figure class='ride-image'><img src='img/events/event-2.jpg' alt=""/></figure><header><h3 class='article-title'>"+obj.pool[length-1].title+"</h3><ul class='article-meta'>toggle='tooltip'><i class='fa fa-calendar'></i>"+obj.pool[length-1].eventdate+" at "+obj.pool[length-1].eventtime+"</a></li><li class='article-author'><a href='#' class='tooltip-link' data-original-title='Post by' data-toggle='tooltip'><i class='fa fa-user'></i>"+obj.pool[length-1].firstname+" "+obj.pool[length-1].lastname+"</a></li><li class='article-tag'><a href='#'class='tooltip-link' data-original-title='Category' data-toggle='tooltip'><i class='fa fa-tags'></i>"+obj.pool[length-1].place+"</a></li></ul></header><div class='article-content'><p>"+obj.pool[length-1].blogtext+"</p><a class='btn green-color pull-right' href='#'>Read more...</a></div></article>";
+                    result+="<article class='article clearfix'><header><h3 class='article-title'>"+obj.pool[length-1].title+"</h3><ul class='article-meta'><i class='fa fa-calendar'></i>"+obj.pool[length-1].eventdate+" at "+obj.pool[length-1].eventtime+" </a></li><li class='article-author'><a href='#' class='tooltip-link' data-original-title='Post by' data-toggle='tooltip'><i class='fa fa-user'></i>"+obj.pool[length-1].firstname+" "+obj.pool[length-1].lastname+"</a></li><li class='article-tag'><a href='#'class='tooltip-link' data-original-title='Category' data-toggle='tooltip'><i class='fa fa-tags'></i>"+obj.pool[length-1].place+"</a></li></ul></header><div class='article-content'><p>"+obj.pool[length-1].blogtext+"</p><a class='btn green-color pull-right' href='#'>Read more...</a></div></article>";
 
                  // window.location.href="#joinpool";
 
@@ -225,11 +234,18 @@
             <div class="container">
                 <div id="joinRide"><div>
                 <div class="row">
-                        <div class="col-sm-12 col-md-12 col-xs-12">
-
+                        <div class="col-sm-12 col-md-12 col-xs-12"> 
+                        <div class="page-sub-title textcenter">
+                            <h2>Share your News</h2>
+                            <div class="line"></div>
+                        </div>
+                                <div class="clearfix"></div>
+                                    <div class="field buttons">
+                                        <button type="submit" class="btn btn-lg green-color" id="capturePhoto">Take a picture</button>
+                                        <div><center><img class="lazy" style="display:none;width:100%;height:100%;" id="smallImage" src="" /></center></div>
+                                    </div>
                         <div class="page-content add-new-ride">
 
-                            <form action="" novalidate autocomplete="off" class="idealforms add-ride">
 
                             <div class="field">
                                 <input id="firstname" type="text" placeholder="First Name">
@@ -270,7 +286,6 @@
                                     <button type="submit" class="btn btn-lg green-color" onclick="addNews()">Submit</button>
                                 </div>
 
-                            </form>
 
                         </div><!-- end .page-content -->
 
@@ -338,6 +353,7 @@
 
         </footer><!-- end #footer -->
 
+        <script src="scripts/jquery.mobile.js"></script>
         <!-- Javascript -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- Bootstrap -->
