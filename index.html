@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html class="not-ie no-js" lang="en">  <!--<![endif]-->
+    <head>
+
+        <!-- Basic Page Needs -->
+        <meta charset="utf-8">
+        <title>Welcome to Share My Ride</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!-- Mobile Specific Metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Styles -->
+
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Forms -->
+        <link href="css/jquery.idealforms.css" rel="stylesheet">
+        <!-- Select  -->
+        <link href="css/jquery.idealselect.css" rel="stylesheet">
+        <!-- Slicknav  -->
+        <link href="css/slicknav.css" rel="stylesheet">
+        <!-- Main style -->
+        <link href="css/style.css" rel="stylesheet">
+
+        <!-- Javascript -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <!-- Main jQuery -->
+        <script type="text/javascript" src="js/jquery.main.js"></script>
+        <!-- Form -->
+        <script type="text/javascript" src="js/jquery.idealforms.min.js"></script>
+        <script type="text/javascript" src="js/jquery.idealselect.min.js"></script>
+        
+        <!-- Menu -->
+        <script type="text/javascript" src="js/hoverIntent.js"></script>
+        <script type="text/javascript" src="js/superfish.js"></script>
+        <!-- Counter-Up  -->
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+        <script type="text/javascript" src="js/jquery.counterup.min.js"></script>
+        <!-- Rating  -->
+        
+        <!-- Slicknav  -->
+        <script type="text/javascript" src="js/jquery.slicknav.min.js"></script>
+
+        <script>
+
+            function addUserComplete(xhr, status){
+                //alert("status is" + status);
+
+                if(status!="success"){
+                    alert("status is "+status);
+                    spanSignup.innerHTML="Sign Up Unsuccessful";
+                    return;
+                }
+                //alert("xhr.responseText");
+                var obj= $.parseJSON(xhr.responseText);
+                
+                //alert("hey");
+                if(obj.result==0){
+                    alert("server response: "+obj.message);
+                    
+                    spanSignup.innerHTML=obj.message;
+                    console.log(obj.message);
+                }else{
+                    alert("Welcome, you have successfully registered.");
+                    window.location="login.html";
+                    
+                }
+            }
+
+           function addUser(){
+                username=$("#user").val();
+                firstname=$("#firstname").val();
+                lastname=$("#lastname").val();
+                password=$("#pass").val();
+                gender=$("#gender").val();
+                dob=$("#dob").val();
+                phone=$("#phone").val();
+                email=$("#email").val();
+                //alert(username);
+
+                pageUrl="userajax.php?cmd=1&username="+username+"&firstname="+firstname+"&lastname="+lastname+"&password="+password+"&gender="+gender+"&dob="+dob+"&phone="+phone+"&email="+email;
+                $.ajax(pageUrl,{async:true,complete:addUserComplete});
+                alert("Thank you for registering, please wait a moment while we retrieve your information.");
+                //prompt('url',pageUrl);
+           }
+
+           function logUserComplete(xhr,status){
+                if(status!="success"){
+                alert("status is "+status);
+                //spanSignup.innerHTML="Sign Up Unsuccessful";
+                return;
+                }
+                //alert("hello");
+                console.log(xhr.responseText);
+                var obj= $.parseJSON(xhr.responseText);
+                
+                //alert("object is "+obj);
+                
+                //alert("hey");
+                if(obj.result==0){
+                    alert("server response: "+obj.message);
+                    
+                    //spanSignup.innerHTML=obj.message;
+                    console.log(obj.message);
+                }else{
+                    alert("Welcome, you have successfully logged in.");
+                    window.location="login.html";
+                    
+                }
+           }
+
+           function logUser(){
+                username=$("#username").val();
+                password=$("#password").val();
+
+                pageUrl="userajax.php?cmd=2&username="+username+"&password="+password;
+                $.ajax(pageUrl,{async:true,complete:logUserComplete});
+                alert("Thank you for returning, please wait a moment while we retrieve your information.");
+                //prompt('url',pageUrl);
+           } 
+        </script>
+
+        <!-- Fonts -->
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+
+        <header class="header">
+
+            <div class="main-baner">
+
+                            <section class="container">
+
+                                <div class="row">
+
+                                    <div class="main-header-container clearfix">
+
+                                        <div class="col-md-4 col-sm-12 col-xs-12">
+
+                                            <div class="logo">
+                                                <h1>Share My Ride</h1>
+                                            </div><!-- end .logo -->
+
+                                        </div><!-- end .col-sm-4 -->
+
+
+                                    </div><!-- end .main-header-container -->
+
+                                </div><!-- end .row -->
+
+                            </section><!-- end .container -->
+
+            </div><!-- end .main-baner -->
+
+        </header><!-- end .header -->
+
+        <section class="main-content">
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="page-content">
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+
+                                <div class="page-sub-title textcenter">
+                                    <h2>If you want to go far, don't go alone, go together.</h2>
+                                    <div class="line"></div>
+                                </div><!-- end .page-sub-title -->
+
+                            </div><!-- end .col-md-12 col-sm-12 col-xs-12 -->
+
+                        </div><!-- end .services -->
+
+                       <div class="col-md-12 col-sm-12 col-xs-12">
+                       <form action="" novalidate autocomplete="off" class="idealforms login">
+
+                            <div class="log-header">
+                                <span class="log-in">Log in</span>
+                            </div>
+
+                            <div class="field">
+                                <input id="username" type="text" placeholder="Username">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="field">
+                                <input type="password" id="password" placeholder="Password">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="field buttons">
+                                <button type="submit" class="submit btn green-color" onclick="logUser()">Log in</button>
+                            </div>
+
+                            <div class="clearfix"></div>
+
+                        </form><!-- end .login -->
+
+                        </div><!-- end .col-md-12 -->
+
+                       <div class="col-md-12 col-sm-12 col-xs-12">
+
+                        <form action="" novalidate autocomplete="off" class="idealforms reg">
+                            <span> Don't have an account? then get one now!<br></span>
+
+                            <div class="log-header" id="spanSignup">
+                                <span class="log-in">Sign up</span>
+                            </div>
+
+                            <div class="field">
+                                <input id="user" type="text" placeholder="Username">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="field">
+                                <input id="firstname" type="text" placeholder="First Name">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="field">
+                                <input id="lastname" type="text" placeholder="Last Name">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="field">
+                                <input type="password" id="pass" placeholder="Password">
+                                <span class="error"></span>
+                            </div>
+
+                            Gender
+                                <div class="field">
+                                    <select id="gender" name="Gender">
+                                        <option value="default">Select</option>
+                                        <option>Female</option>
+                                        <option>Male</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+
+                            <div class="field">
+                                <input type="date" id="dob" placeholder="Date of Birth">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="field">
+                                <input type="text" id="phone" placeholder="Phone Number">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="field">
+                                <input id="email" type="text"  placeholder="E-Mail">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="field buttons">
+                                <button type="submit" class="submit btn green-color" onclick ="addUser()">Sign up</button>
+                            </div>
+                            <a href="#" class="log-twitter twitter"><i class="fa fa-twitter"></i>Twitter</a>
+                            <a href="#" class="log-facebook facebook"><i class="fa fa-facebook"></i>Facebook</a>
+
+                            <div class="clearfix"></div>
+
+                        </form><!-- end .reg -->
+
+                        </div><!-- end .col-md-12 -->
+
+
+                    </div><!-- end .page-content -->
+
+                </div><!-- end .row -->
+            </div><!-- end .container -->
+
+        </section><!-- end .main-content -->
+
+        <footer id="footer">
+
+            <div class="footer-copyright">
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            Copyright by Share My Ride
+                        </div>
+
+                    </div><!-- end .row -->
+                </div><!-- end .container -->
+
+            </div><!-- end .footer-copyright -->
+
+        </footer><!-- end #footer -->
+    </body>
+</html>

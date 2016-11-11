@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<!--[if IE 7]>                  <html class="ie7 no-js" lang="en">     <![endif]-->
+<!--[if lte IE 8]>              <html class="ie8 no-js" lang="en">     <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="not-ie no-js" lang="en">  <!--<![endif]-->
+    <head>
+
+        <!-- Basic Page Needs -->
+        <meta charset="utf-8">
+        <title>Welcome to Share My Ride</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!-- Mobile Specific Metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Styles -->
+
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Forms -->
+        <link href="css/jquery.idealforms.css" rel="stylesheet">
+        <!-- Select  -->
+        <link href="css/jquery.idealselect.css" rel="stylesheet">
+        <!-- Slicknav  -->
+        <link href="css/slicknav.css" rel="stylesheet">
+        <!-- Main style -->
+        <link href="css/style.css" rel="stylesheet">
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>s
+        <script src="scripts/jquery.js"></script>
+        <script src="scripts/jquery.mobile.js"></script>
+
+        <script>
+
+            function addUserComplete(xhr, status){
+                //alert("status is" + status);
+
+                if(status!="success"){
+                    alert("status is "+status);
+                    spanSignup.innerHTML="Sign Up Unsuccessful";
+                    return;
+                }
+
+                var obj= $.parseJSON(xhr.responseText);
+                if(obj.result==0){
+                    
+                    alert("object is "+obj.message);
+                    console.log(obj.message);
+                }else{
+                    alert("Welcome, you have successfully registered.");
+                    alert("object is "+obj.message);
+                    window.location="login.html";                   
+                    //alert("success");
+                    //header("rides.html");
+                }
+            }
+
+           function addUser(){
+                username=$("#username").val();
+                firstname=$("#firstname").val();
+                lastname=$("#lastname").val();
+                password=$("#password").val();
+                gender=$("#gender").val();
+                dob=$("#dob").val();
+                phone=$("#phone").val();
+                email=$("email").val();
+
+
+                pageUrl="userajax.php?cmd=1&username="+username+"&firstname="+firstname+"&lastname="+lastname+"&password="+password+"&gender="+gender+"&dob="+dob+"&phone="+phone+"&email="+email;
+                $.ajax(pageUrl,{async:true,complete:addUserComplete});
+               // alert(pageUrl);
+           } 
+        </script>
+
+        <!-- Fonts -->
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+
+        <header class="header">
+
+            <div class="top-menu">
+
+                <section class="container">
+                    <div class="row">
+
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="user-log">
+
+                                <a data-toggle="modal" data-target="#loginModal">
+                                    Log in  
+                                </a> OR
+                                <a data-toggle="modal" data-target="#regModal">
+                                    Sign up
+                                </a>
+
+                            </div><!-- end .user-log -->
+                        </div><!-- end .col-sm-4 -->
+
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+
+                            <ul class="social-icons">
+                                <li>
+                                    <a class="facebook" href="#">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="twitter" href="#">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="google" href="#">
+                                        <i class="fa fa-google-plus"></i>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div><!-- end .col-sm-8 -->
+
+                    </div><!-- end .row -->
+                </section><!-- end .container -->
+
+            </div><!-- end .top-menu -->
+
+            <div class="main-baner">
+
+                            <section class="container">
+
+                                <div class="row">
+
+                                    <div class="main-header-container clearfix">
+
+                                        <div class="col-md-4 col-sm-12 col-xs-12">
+
+                                            <div class="logo">
+                                                <h1>Share My Ride</h1>
+                                            </div><!-- end .logo -->
+
+                                        </div><!-- end .col-sm-4 -->
+
+
+                                    </div><!-- end .main-header-container -->
+
+                                </div><!-- end .row -->
+
+                            </section><!-- end .container -->
+
+            </div><!-- end .main-baner -->
+
+        </header><!-- end .header -->
+
+        <section class="main-content">
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="page-content">
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+
+                                <div class="page-sub-title textcenter">
+                                    <h2>If you want to go far, don't go alone, go together.</h2>
+                                    <div class="line"></div>
+                                </div><!-- end .page-sub-title -->
+
+                            </div><!-- end .col-md-12 col-sm-12 col-xs-12 -->
+
+                        </div><!-- end .services -->
+
+                       <div class="col-md-12 col-sm-12 col-xs-12">
+
+                        <form action="" novalidate autocomplete="off" class="idealforms reg">
+
+                            <div class="log-header">
+                                <span class="log-in" id="spanSignup">Sign up</span>
+                            </div>
+
+                            <div class="field">
+                                <input id="username" type="text" placeholder="Username">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="field">
+                                <input id="firstname" type="text" placeholder="First Name">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="field">
+                                <input id="lastname" type="text" placeholder="Last Name">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="field">
+                                <input type="password" id="password" placeholder="Password">
+                                <span class="error"></span>
+                            </div>
+
+                            Gender
+                            <div class="field">
+
+                                <input type="radio" id="gender" value="Female"> Female <br>
+                                <input type ="radio" value="Male"> Male <br>
+                                <input type="radio" id="gender" value="Other"> Other
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="field">
+                                <input type="date" id="dob" placeholder="Date of Birth">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="field">
+                                <input type="text" id="phone" placeholder="Phone Number">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="field">
+                                <input id="email" type="email"  placeholder="E-Mail">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="field buttons">
+                                <button type="submit" class="submit btn green-color" onclick ="addUser()">Sign up</button>
+                            </div>
+
+                            <div class="clearfix"></div>
+
+                        </form><!-- end .reg -->
+
+                        </div><!-- end .col-md-12 -->
+
+                    </div><!-- end .page-content -->
+
+                </div><!-- end .row -->
+            </div><!-- end .container -->
+
+        </section><!-- end .main-content -->
+
+        <footer id="footer">
+
+            <div class="footer-copyright">
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            Copyright by Share My Ride
+                        </div>
+
+                    </div><!-- end .row -->
+                </div><!-- end .container -->
+
+            </div><!-- end .footer-copyright -->
+
+        </footer><!-- end #footer -->
+
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div><!-- end .modal-header -->
+
+                    <div class="modal-body">
+                        <form action="" novalidate autocomplete="off" class="idealforms login">
+
+                            <div class="log-header">
+                                <span class="log-in">Log in</span>
+                            </div>
+
+                            <div class="field">
+                                <input name="username" type="text" placeholder="Username">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="field">
+                                <input type="password" name="password" placeholder="Password">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="field buttons">
+                                <button type="submit" class="submit btn green-color">Log in</button>
+                            </div>
+
+                            <a href="#" class="log-twitter twitter"><i class="fa fa-twitter"></i>Twitter</a>
+                            <a href="#" class="log-facebook facebook"><i class="fa fa-facebook"></i>Facebook</a>
+
+                            <div class="clearfix"></div>
+
+                        </form><!-- end .login -->
+                    </div><!-- end .modal-body -->
+
+                </div><!-- end .modal-content -->
+            </div><!-- end .modal-dialog -->
+        </div><!-- end .modal -->
+
+  
+
+    </body>
+</html>
