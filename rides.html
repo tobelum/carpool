@@ -82,7 +82,7 @@
 
            function viewRides(){
                 //alert("here");
-                pageUrl="userajax.php?cmd=4";
+                pageUrl="http://52.89.116.249/~tobel.eze-okoli/carpool/userajax.php?cmd=4";
                 $.ajax(pageUrl,{async:true,complete:viewRidesComplete});
                 alert("loading");
                 //prompt('url',pageUrl);
@@ -115,7 +115,7 @@
 
            function joinPool(rideid,numpeople,joined,seats){
                 var people=numpeople+1;
-                var pageUrl="userajax.php?cmd=6&rideid="+rideid+"&numpeople="+people+"&isjoined="+joined+"&seatsleft="+seats;
+                var pageUrl="http://52.89.116.249/~tobel.eze-okoli/carpool/userajax.php?cmd=6&rideid="+rideid+"&numpeople="+people+"&isjoined="+joined+"&seatsleft="+seats;
                 $.ajax(pageUrl,{async:true,complete:joinPoolComplete});
                 alert("loading");
                 prompt('url',pageUrl);

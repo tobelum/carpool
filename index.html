@@ -83,7 +83,7 @@
                 email=$("#email").val();
                 //alert(username);
 
-                pageUrl="userajax.php?cmd=1&username="+username+"&firstname="+firstname+"&lastname="+lastname+"&password="+password+"&gender="+gender+"&dob="+dob+"&phone="+phone+"&email="+email;
+                pageUrl="http://52.89.116.249/~tobel.eze-okoli/carpool/userajax.php?cmd=1&username="+username+"&firstname="+firstname+"&lastname="+lastname+"&password="+password+"&gender="+gender+"&dob="+dob+"&phone="+phone+"&email="+email;
                 $.ajax(pageUrl,{async:true,complete:addUserComplete});
                 alert("Thank you for registering, please wait a moment while we retrieve your information.");
                 //prompt('url',pageUrl);
@@ -118,7 +118,7 @@
                 username=$("#username").val();
                 password=$("#password").val();
 
-                pageUrl="userajax.php?cmd=2&username="+username+"&password="+password;
+                pageUrl="http://52.89.116.249/~tobel.eze-okoli/carpool/userajax.php?cmd=2&username="+username+"&password="+password;
                 $.ajax(pageUrl,{async:true,complete:logUserComplete});
                 alert("Thank you for returning, please wait a moment while we retrieve your information.");
                 //prompt('url',pageUrl);
